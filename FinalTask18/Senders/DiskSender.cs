@@ -4,17 +4,22 @@ namespace FinalTask18.Senders
 {
     internal class DiskSender : ISender
     {
-        ICommand command;
+        private ICommand command;
+
+        public DiskSender(ICommand command) 
+        {
+            this.command = command;
+        }
 
         public void SetCommand(ICommand command) 
         {
             this.command = command;
         }
 
-        public void Execute()
-        {
-            Console.WriteLine("Команда отправлена");
-            command.Execute();
+        public void ExecuteAsync()
+        { 
+            var task = command.ExecuteAsync();
+            task.Wait();
         }
     }
 }

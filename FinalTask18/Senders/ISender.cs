@@ -2,6 +2,6 @@
 {
     internal interface ISender
     {
-        public abstract void Execute();
+        public void ExecuteAsync();
     }
 }

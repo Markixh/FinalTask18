@@ -3,27 +3,26 @@ using FinalTask18.Commands;
 
 using FinalTask18.Senders;
 using FinalTask18.Services;
+using YoutubeExplode.Converter;
 
 namespace FinalTask18
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            var diskSender = new DiskSender();
+        static void Main()
+        {     
+            var youtubeService = new YoutubeService("https://www.youtube.com/watch?v=Mr-z-6EW-Fc");
 
-            var youtubeService = new YoutubeService();
+            var downloadcommand = new DownloadVideoCommand(youtubeService);
+            var infoCommand = new GetInfoForVideoCommand(youtubeService);
 
-            var command = new DownloadVideoCommand(youtubeService);
-            var command2 = new GetInfoForVideoCommand(youtubeService);
+            var diskSender = new DiskSender(infoCommand);
 
-            diskSender.SetCommand(command);
+            diskSender.ExecuteAsync();
 
-            diskSender.Execute();
+            diskSender.SetCommand(downloadcommand);
 
-            diskSender.SetCommand(command2);
-
-            diskSender.Execute();
+            diskSender.ExecuteAsync();
         }
     }
 }

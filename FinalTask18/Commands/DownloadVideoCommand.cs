@@ -11,10 +11,10 @@ namespace FinalTask18.Commands
             this.videoService = videoService;
         }
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
-            Console.WriteLine("Команда получена");
-            videoService.DownLoadVideo();
+            Console.WriteLine("Загрузка видео начата");
+            await videoService.DownLoadVideoAsync();
         }
     }
 }

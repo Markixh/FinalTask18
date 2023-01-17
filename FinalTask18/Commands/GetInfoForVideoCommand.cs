@@ -4,17 +4,17 @@ namespace FinalTask18.Commands
 {
     internal class GetInfoForVideoCommand : ICommand
     {
-        public IVideoService videoService { get; private set; }
+        public IVideoService VideoService { get; private set; }
 
         public GetInfoForVideoCommand(IVideoService videoService)
         {
-            this.videoService = videoService;
+            this.VideoService = videoService;
         }
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
             Console.WriteLine("Команда получена");
-            videoService.GetInfoForVideo();
+            await VideoService.GetInfoForVideoAsync();
         }
     }
 }

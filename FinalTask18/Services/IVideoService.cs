@@ -2,8 +2,8 @@
 {
     public interface IVideoService
     {
-        public abstract void DownLoadVideo();
+        public Task DownLoadVideoAsync();
 
-        public abstract void GetInfoForVideo();
+        public Task GetInfoForVideoAsync();
     }
 }
