@@ -13,7 +13,8 @@ namespace FinalTask18.Commands
 
         public void Execute()
         {
-            Console.WriteLine("Команда отправлена");
+            Console.WriteLine("Команда получена");
+            videoService.DownLoadVideo();
         }
     }
 }

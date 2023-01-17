@@ -2,7 +2,7 @@
 
 namespace FinalTask18.Commands
 {
-    internal class GetInfoForVideoCommand
+    internal class GetInfoForVideoCommand : ICommand
     {
         public IVideoService videoService { get; private set; }
 
@@ -13,7 +13,8 @@ namespace FinalTask18.Commands
 
         public void Execute()
         {
-            Console.WriteLine("Команда отправлена");
+            Console.WriteLine("Команда получена");
+            videoService.GetInfoForVideo();
         }
     }
 }

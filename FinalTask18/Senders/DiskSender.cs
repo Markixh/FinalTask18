@@ -6,7 +6,7 @@ namespace FinalTask18.Senders
     {
         ICommand command;
 
-        public DiskSender(ICommand command) 
+        public void SetCommand(ICommand command) 
         {
             this.command = command;
         }
@@ -14,6 +14,7 @@ namespace FinalTask18.Senders
         public void Execute()
         {
             Console.WriteLine("Команда отправлена");
+            command.Execute();
         }
     }
 }
