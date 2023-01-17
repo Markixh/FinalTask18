@@ -2,10 +2,13 @@
 
 namespace FinalTask18.Commands
 {
+    /// <summary>
+    /// Класс реализует команду получения информации о видеоролике
+    /// </summary>
     internal class GetInfoForVideoCommand : ICommand
     {
         public IVideoService VideoService { get; private set; }
-
+                
         public GetInfoForVideoCommand(IVideoService videoService)
         {
             this.VideoService = videoService;
@@ -13,7 +16,6 @@ namespace FinalTask18.Commands
 
         public async Task ExecuteAsync()
         {
-            Console.WriteLine("Команда получена");
             await VideoService.GetInfoForVideoAsync();
         }
     }

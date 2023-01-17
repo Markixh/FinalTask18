@@ -3,6 +3,9 @@ using YoutubeExplode.Converter;
 
 namespace FinalTask18.Services
 {
+    /// <summary>
+    /// Сервис загрузки видеороликов из youtube
+    /// </summary>
     internal class YoutubeService : IVideoService
     {
         private readonly YoutubeClient youtubeClient;
@@ -14,9 +17,12 @@ namespace FinalTask18.Services
             this.videoUrl = videoUrl;
         }
 
+        /// <summary>
+        /// Метод загрузки видео с сайта Youtube
+        /// </summary>
+        /// <returns></returns>
         public async Task DownLoadVideoAsync()
         {
-            Console.WriteLine("Загрузка начата");
             try
             {
                 await youtubeClient.Videos.DownloadAsync(videoUrl, "video.mp4", o => o
@@ -24,19 +30,48 @@ namespace FinalTask18.Services
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+
                 Console.WriteLine(ex.Message);
+
+                Console.ForegroundColor = ConsoleColor.White;
+
                 Console.ReadKey();
             }
         }
 
+        /// <summary>
+        /// Метод получает информацию о видеоролике и выводит ее в консоль
+        /// </summary>
+        /// <returns></returns>
         public async Task GetInfoForVideoAsync()
         {
-            var video = await youtubeClient.Videos.GetAsync(videoUrl);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(video.Title);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(video.Description);
-            Console.ForegroundColor = ConsoleColor.White;
+            try
+            {
+                var video = await youtubeClient.Videos.GetAsync(videoUrl);
+
+                if (video == null) { return; }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine(video.Title);
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                Console.WriteLine(video.Description);
+
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine(ex.Message);
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.ReadKey();
+            }
         }
     }
 }
